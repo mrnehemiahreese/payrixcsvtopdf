@@ -5,7 +5,8 @@ from typing import List
 
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
+from reportlab.lib.styles import getSampleStyleSheet
 
 
 def csv_to_table_data(path: str) -> List[List[str]]:
@@ -18,12 +19,18 @@ def csv_to_table_data(path: str) -> List[List[str]]:
 def create_pdf(rows: List[List[str]], output_path: str) -> None:
     """Create a PDF file from the given table rows."""
     doc = SimpleDocTemplate(output_path, pagesize=letter)
+    styles = getSampleStyleSheet()
+    para_style = styles["Normal"]
     if not rows:
         rows = [[]]
     # Determine the maximum column count so every row has the same length
     num_cols = max(len(r) for r in rows)
     padded_rows = [r + [""] * (num_cols - len(r)) for r in rows]
-    table = Table(padded_rows, colWidths=[doc.width / num_cols] * num_cols, repeatRows=1)
+    wrapped_rows = [
+        [Paragraph(cell, para_style) for cell in row]
+        for row in padded_rows
+    ]
+    table = Table(wrapped_rows, colWidths=[doc.width / num_cols] * num_cols, repeatRows=1)
     style = TableStyle(
         [
             ("FONT", (0, 0), (-1, -1), "Helvetica", 10),
