@@ -20,8 +20,10 @@ def create_pdf(rows: List[List[str]], output_path: str) -> None:
     doc = SimpleDocTemplate(output_path, pagesize=letter)
     if not rows:
         rows = [[]]
-    num_cols = len(rows[0]) if rows else 1
-    table = Table(rows, colWidths=[doc.width / num_cols] * num_cols, repeatRows=1)
+    # Determine the maximum column count so every row has the same length
+    num_cols = max(len(r) for r in rows)
+    padded_rows = [r + [""] * (num_cols - len(r)) for r in rows]
+    table = Table(padded_rows, colWidths=[doc.width / num_cols] * num_cols, repeatRows=1)
     style = TableStyle(
         [
             ("FONT", (0, 0), (-1, -1), "Helvetica", 10),
