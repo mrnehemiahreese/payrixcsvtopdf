@@ -1,0 +1,26 @@
+"Disbursement Totals"
+"Type","Count","Credit","Debit","Disbursed"
+"Sales","4","$432.26","$0.00","$432.26"
+"Miscellaneous Fees","4","$0.00","-$8.26","-$8.26"
+
+"Total","","$432.26","-$8.26","$424.00"
+
+"Sales"
+"Type","ID","Cardholder","Company","Amount","Date"
+"Sale","p1_txn_685c63db7c451db1403ba6f","","","$135.59","06-25-2025"
+"Sale","p1_txn_685c63da38fd5fd307193ab","","","$135.59","06-25-2025"
+"Sale","p1_txn_685c5e8b502847d9a9119b9","TRACY MUSSER","","$81.56","06-25-2025"
+"Sale","p1_txn_685c14e98a173913a46f0d3","JACKIE HARDISON","","$79.52","06-25-2025"
+
+"Refunds"
+"Type","ID","Cardholder","Company","Amount","Date"
+
+"Chargebacks / Returns"
+"Type","ID","Cardholder","Company","Amount","Date"
+
+"Fees"
+"Type","Count","Credit","Debit","Disbursed"
+"Capture","","$0.00","-$8.26","-$8.26"
+
+"Debits"
+"Type","ID","Cardholder","Company","Amount","Date"
